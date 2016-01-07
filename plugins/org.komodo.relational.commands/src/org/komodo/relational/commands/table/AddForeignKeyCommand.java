@@ -47,7 +47,7 @@ public final class AddForeignKeyCommand extends TableShellCommand {
             Table referencedTable = null;
 
             { // see if valid table path
-                String repoPath = getWorkspaceStatus().getCurrentContextLabelProvider().getPath( tableRefPath );
+                String repoPath = getRelationalLabelProvider().getPath( tableRefPath );
 
                 if ( StringUtils.isBlank( repoPath ) ) {
                     repoPath = tableRefPath;

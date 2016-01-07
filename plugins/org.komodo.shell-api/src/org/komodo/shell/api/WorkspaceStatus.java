@@ -23,6 +23,7 @@ package org.komodo.shell.api;
 
 import java.io.InputStream;
 import java.io.Writer;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -438,5 +439,12 @@ public interface WorkspaceStatus extends StringConstants {
      * @see #AUTO_COMMIT
      */
     boolean isAutoCommit();
+
+    /**
+     * Returns a collection of available label providers. DefaultLableProvider is not included in the collection.
+     *
+     * @return a collection of alternative label providers
+     */
+    public Collection<KomodoObjectLabelProvider> getAlternateLabelProviders();
 
 }

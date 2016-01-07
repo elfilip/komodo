@@ -863,6 +863,8 @@ public class WorkspaceStatusImpl implements WorkspaceStatus {
          return lastUsedLabelProvider;
 	}
 
+
+
     /*
      * Set the Label provider for the supplied context
      * @param context the context
@@ -1191,5 +1193,14 @@ public class WorkspaceStatusImpl implements WorkspaceStatus {
 
         return sb.toString();
     }
+    /**
+     * {@inheritDoc}
+     *
+     * @see @see org.komodo.shell.api.WorkspaceStatus#getAlternateLabelProviders()
+     */
+	@Override
+	public Collection<KomodoObjectLabelProvider> getAlternateLabelProviders() {
+		return this.alternateLabelProviders;
+	}
 
 }

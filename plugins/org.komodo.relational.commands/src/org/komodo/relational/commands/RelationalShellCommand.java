@@ -7,10 +7,12 @@
  */
 package org.komodo.relational.commands;
 
+import org.komodo.relational.RelationalLabelProvider;
 import org.komodo.relational.RelationalObject;
 import org.komodo.relational.commands.workspace.WorkspaceCommandsI18n;
 import org.komodo.relational.workspace.WorkspaceManager;
 import org.komodo.shell.BuiltInShellCommand;
+import org.komodo.shell.api.KomodoObjectLabelProvider;
 import org.komodo.shell.api.ShellCommand;
 import org.komodo.shell.api.WorkspaceStatus;
 import org.komodo.spi.KException;
@@ -25,6 +27,7 @@ public abstract class RelationalShellCommand extends BuiltInShellCommand {
 
     protected RelationalShellCommand( final WorkspaceStatus wsStatus,
                                       final String... commandNames ) {
+
         super( wsStatus, commandNames );
     }
 
@@ -74,6 +77,15 @@ public abstract class RelationalShellCommand extends BuiltInShellCommand {
 
     protected WorkspaceManager getWorkspaceManager() throws KException {
         return WorkspaceManager.getInstance( getRepository() );
+    }
+
+    protected RelationalLabelProvider getRelationalLabelProvider(){
+    	for(KomodoObjectLabelProvider provider : getWorkspaceStatus().getAlternateLabelProviders()){
+    		if(KomodoObjectLabelProvider.class.getName().equals(provider.getClass().getName())){
+    			return (RelationalLabelProvider)provider;
+    		}
+    	}
+    	return null;
     }
 
 }
