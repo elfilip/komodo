@@ -431,4 +431,15 @@ public class TestDdlNodeVisitor extends AbstractSequencerTest {
         helpTest(ddl, ddl, SEQUENCE_DDL_PATH + "G1");
     }
 
+    @Test(timeout = 5000000)
+    public void testLocalTempTable() throws Exception {
+        String ddl ="CREATE VIRTUAL PROCEDURE getData(IN p1 integer) RETURNS TABLE (col string)"+NEW_LINE +
+        "OPTIONS (\"UPDATECOUNT\" '0')"+NEW_LINE+
+       "AS"+ NEW_LINE +
+        "BEGIN"+ NEW_LINE +
+    "CREATE LOCAL TEMPORARY TABLE x(c1 BOOLEAN, c2 BYTE, c3 STRING, PRIMARY KEY(c2, c3));"    + NEW_LINE +
+    "SELECT * FROM data;"+ NEW_LINE +
+        "END;";
+        helpTest(ddl, ddl, SEQUENCE_DDL_PATH + "G1");
+    }
 }
